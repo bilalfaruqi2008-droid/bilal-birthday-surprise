@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Bilal ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#160c32,#54245f,#a43e79);
+  color: white;
+  text-align: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+section {
+  min-height: 100vh;
+  padding: 65px 20px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+section.active {
+  display: flex;
+}
+
+h1 {
+  font-size: 36px;
+  color: #ffd6ee;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 500px;
+}
+
+button {
+  background: #ff72b6;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 28px;
+  font-size: 17px;
+  margin-top: 22px;
+  cursor: pointer;
+  box-shadow: 0 5px 20px #0005;
+}
+
+button:active {
+  transform: scale(.95);
+}
+
+.emoji {
+  font-size: 85px;
+  margin: 20px;
+}
+
+.card {
+  background: #ffffff18;
+  border: 1px solid #ffffff40;
+  padding: 25px;
+  border-radius: 22px;
+  max-width: 480px;
+  width: 100%;
+  backdrop-filter: blur(10px);
+}
+
+.cake {
+  font-size: 100px;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  50% { transform: translateY(-12px); }
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  animation: float 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.photo-box {
+  border: 2px dashed #ffd6ee;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 10px;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  margin-top: 15px;
+  color: white;
+}
+
+#letter {
+  display: none;
+  white-space: pre-line;
+}
+
+</style>
+</head>
+
+<body>
+
+<section id="page1" class="active">
+  <div class="emoji">🎁</div>
+  <h1>Hey Bilal! ❤️</h1>
+  <p>
+    Aaj tumhare liye kuch special hai!
+    Are you ready for a little surprise?
+  </p>
+  <button onclick="showPage(2)">Open Your Surprise ✨</button>
+</section>
+
+<section id="page2">
+  <div class="emoji">🎉</div>
+  <h1>It's Your Special Day!</h1>
+  <div class="card">
+    <p>
+      Happy Birthday Bilal! 🥳
+
+      Aaj ka din bohat special hai,
+      because it's all about YOU!
+      
+      Chalo, let's make this day unforgettable!
+    </p>
+  </div>
+  <button onclick="showPage(3)">Next Surprise ❤️</button>
+</section>
+
+<section id="page3">
+  <div class="cake">🎂</div>
+  <h1>Happy Birthday Bilal!</h1>
+  <p>
+    Make a wish! ✨
+    Close your eyes and wish for something beautiful.
+  </p>
+  <button onclick="showPage(4)">Continue 🎁</button>
+</section>
+
+<section id="page4">
+  <div class="emoji">💌</div>
+  <h1>A Special Letter</h1>
+  <div class="card">
+    <p id="letter">
+Dear Bilal! ❤️
+
+Tumhari life ka ye naya year
+khushiyon se bhara ho.
+
+May Allah bless you with happiness,
+success and endless beautiful moments.
+
+Hamesha khush raho,
+keep smiling and keep shining!
+
+Once again, Happy Birthday! 🎂❤️
+    </p>
+    <button id="letterBtn" onclick="openLetter()">
+      Open My Letter 💌
+    </button>
+  </div>
+  <button onclick="showPage(5)">Next ❤️</button>
+</section>
+
+<section id="page5">
+  <div class="emoji">📸</div>
+  <h1>Our Memories</h1>
+  <div class="card">
+    <p>
+      Some moments are special,
+      some memories are unforgettable.
+
+      Add your favourite pictures here! ❤️
+    </p>
+    <div class="photo-box">
+      <input type="file" accept="image/*" multiple
+      onchange="previewPhotos(event)">
+      <div id="gallery"></div>
+    </div>
+  </div>
+  <button onclick="showPage(6)">Final Surprise 🎉</button>
+</section>
+
+<section id="page6">
+  <div class="emoji">🎊❤️🎂</div>
+  <h1>Once Again, Happy Birthday Bilal!</h1>
+  <div class="card">
+    <p>
+      May your dreams come true.
+
+      Allah tumhein duniya ki har khushi
+      naseeb kare.
+
+      Stay blessed, stay happy
+      and always keep smiling! ❤️
+
+      You deserve all the happiness!
+    </p>
+  </div>
+  <button onclick="celebrate()">Celebrate Again! 🎉</button>
+  <button onclick="showPage(1)">Start Again ↩️</button>
+</section>
+
+<script>
+
+function showPage(number) {
+  document.querySelectorAll("section").forEach(s => {
+    s.classList.remove("active");
+  });
+
+  document.getElementById("page" + number)
+    .classList.add("active");
+
+  window.scrollTo(0,0);
+}
+
+function openLetter() {
+  document.getElementById("letter").style.display = "block";
+  document.getElementById("letterBtn").style.display = "none";
+}
+
+function previewPhotos(event) {
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML = "";
+
+  Array.from(event.target.files).forEach(file => {
+    const image = document.createElement("img");
+    image.src = URL.createObjectURL(file);
+    image.style.width = "100%";
+    image.style.borderRadius = "12px";
+    image.style.marginTop = "12px";
+    gallery.appendChild(image);
+  });
+}
+
+function celebrate() {
+  for(let i=0;i<40;i++) {
+    const heart = document.createElement("div");
+    heart.innerHTML = ["❤️","💖","✨","🎉","💕"][
+      Math.floor(Math.random()*5)
+    ];
+    heart.className = "heart";
+    heart.style.left = Math.random()*100+"vw";
+    heart.style.animationDuration = (3+Math.random()*4)+"s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(),7000);
+  }
+}
+
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.innerHTML = "💗";
+  heart.className = "heart";
+  heart.style.left = Math.random()*100+"vw";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(),6000);
+},1200);
+
+</script>
+
+</body>
+</html>
